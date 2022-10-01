@@ -6,7 +6,10 @@ import { ACTION_TYPES } from "./postActionsTypes";
 import Form from "./Form";
 
 function App() {
-  const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
+  const [{ post, loading, error }, dispatch] = useReducer(
+    postReducer,
+    INITIAL_STATE
+  );
   const handleFetch = () => {
     dispatch({ type: ACTION_TYPES.FETCH_START });
     fetch("https://jsonplaceholder.typicode.com/posts/1")
@@ -22,13 +25,13 @@ function App() {
     <>
       <div className="App">
         <button onClick={handleFetch}>
-          {state.loading ? "Loading..." : "Fetch Post"}
+          {loading ? "Loading..." : "Fetch Post"}
         </button>
-        {state.error && <p>Something went wrong!</p>}
-        {state.post && (
+        {error && <p>Something went wrong!</p>}
+        {post && (
           <div className="post">
-            <h2>{state.post.title}</h2>
-            <p>{state.post.body}</p>
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
           </div>
         )}
       </div>

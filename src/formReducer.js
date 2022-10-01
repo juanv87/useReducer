@@ -15,7 +15,7 @@ export const INITIAL_STATE = {
 export const formReducer = (state, action) => {
   switch (action.type) {
     case "CHANGE_INPUT":
-      return { ...state, [action.payload.name]: action.payload.value };
+      return { ...state, [action.name]: action.value };
     case "SET_TITLE":
       return { ...state, title: action.value };
     default:

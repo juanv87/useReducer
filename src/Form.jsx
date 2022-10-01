@@ -3,11 +3,11 @@ import { formReducer, INITIAL_STATE } from "./formReducer";
 
 const Form = () => {
   const [state, dispatch] = useReducer(formReducer, INITIAL_STATE);
-  const handleChange = (e) => {
+  const handleChange = ({ target: { name, value } }) => {
     dispatch({
       type: "CHANGE_INPUT",
-      name: e.target.name,
-      value: e.target.value,
+      name: name,
+      value: value,
     });
   };
   console.log("🚀 ~ file: Form.jsx ~ line 64 ~ Form ~ state", state);
